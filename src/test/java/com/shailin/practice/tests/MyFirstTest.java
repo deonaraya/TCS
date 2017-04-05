@@ -1,5 +1,6 @@
 package com.shailin.practice.tests;
 
+import com.shailin.practice.pages.AddToCartPopUp;
 import com.shailin.practice.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -31,7 +32,20 @@ public class MyFirstTest {
 
     }
 
+
     @Test
+    public void addToCartTest(){
+        driver.get(baseURL);
+        HomePage page = new HomePage(driver);
+        page.addProductToCart();
+
+        AddToCartPopUp popup = new AddToCartPopUp(driver);
+        popup.waitForPageLoad();
+
+
+    }
+
+    //@Test
     public void testOne(){
 
         driver.get(baseURL);
@@ -44,8 +58,8 @@ public class MyFirstTest {
    @AfterMethod
     public void tearDown(){
 
-       driver.quit();
        driver.close();
+       driver.quit();
        System.out.println("closing the tests");
    }
 }

@@ -2,8 +2,10 @@ package com.shailin.practice.pages;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
@@ -68,6 +70,31 @@ public class HomePage {
     @FindBy(xpath = "//ul[@id='homefeatured']/li[3]//div[@class='right-block']//span[@itemprop='price']")
     private WebElement productPrice3 ;
 
+    @FindBy(xpath = "//ul[@id='homefeatured']/li[3]//div[@class='right-block']//a[@title='Add to cart']")
+    private WebElement addToCartButton3 ;
+
+    public void waitForElement(WebElement element){
+
+        wait = new WebDriverWait(driver,15);
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+
+    public void waitForPageLoad(){
+        waitForElement(catalogTabs);
+    }
+
+    public void addProductToCart(){
+
+
+        Actions action = new Actions(driver);
+            action.moveToElement(productContainer3).build().perform();
+            waitForElement(addToCartButton3);
+            addToCartButton3.click();
+
+    }
+
+
 
     public void getItemNames(){
 
@@ -84,6 +111,7 @@ public class HomePage {
         System.out.println(productPrice3.getText());
 
     }
+
 
 
 
