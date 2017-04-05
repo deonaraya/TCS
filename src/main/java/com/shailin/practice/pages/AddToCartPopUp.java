@@ -4,20 +4,19 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 /**
  * Created by chandrad on 3/28/17.
  */
-public class AddToCartPopUp {
+public class AddToCartPopUp extends BasePage {
 
-    WebDriver driver ;
     WebDriverWait wait ;
 
     public AddToCartPopUp(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
         PageFactory.initElements(driver,this);
+        waitForPageLoad();
     }
 
     @FindBy(className = "icon-ok")
@@ -29,15 +28,12 @@ public class AddToCartPopUp {
     @FindBy(id = "layer_cart_product_title")
     private static WebElement addedprocutName ;
 
-
-    public void waitForElement(WebElement element){
-
-        wait = new WebDriverWait(driver,15);
-        wait.until(ExpectedConditions.visibilityOf(element));
-    }
-
     public void waitForPageLoad(){
         waitForElement(cartSuccessMessage);
+    }
+
+    public void navigateToCartSummary(){
+        checkoutStep1Button.click();
     }
 
 }

@@ -1,4 +1,4 @@
-package com.shailin.practice.tests;
+package com.shailins.ds;
 
 import org.testng.annotations.Test;
 
@@ -12,6 +12,9 @@ public class DsAlgo {
 
     public void minSum(int[] arr){
 
+        //We are given an array of even size, we have to sort the array in such a way that the sum of product
+        // of alternate elements is minimum also we have to find that minimum sum.
+
         int l = arr.length;
         Arrays.sort(arr);
 
@@ -20,25 +23,31 @@ public class DsAlgo {
 
         for (int i = 0 ; i < ((l/2));i++)
         {
-            aux1[i] = arr[2*i];
-            aux2[i] = arr[2*i + 1];
+            aux1[i] = arr[i];
+            aux2[i] = arr[i + 4];
         }
 
-        for (int a :aux1
-             ) {
-            System.out.println(a);
+        int sum = 0;
+        int k = 0;
+        for (int j= 0; j < l/2 ;j++){
+
+            arr[k++] = aux1[j];
+            arr[k++] = aux2[l/2 -j -1];
+            sum+= arr[2*j]*arr[2*j+1];
         }
-        for (int b :aux2
-                ) {
-            System.out.println(b);
-        }
+
+        for (int a : arr) {
+        System.out.println(a);}
+        System.out.println(sum);
     }
 
     @Test
     public void testb(){
-        int[] arr = new int[]{1,2,3,4,5,6,7,8};
-        minSum(arr);
+        int[] arr = new int[]{1, 2, 1, 4, 0, 5, 6, 0};
+        int[] arr1 = new int[]{1,2,3,4,5,6,7,8,9};
+        minSum(arr1);
     }
+
 
 
     public void sumint(String str){

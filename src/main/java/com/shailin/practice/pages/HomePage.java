@@ -5,7 +5,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
@@ -13,14 +12,14 @@ import java.util.List;
 /**
  * Created by chandrad on 3/28/17.
  */
-public class HomePage {
+public class HomePage extends BasePage {
 
-    WebDriver driver ;
     WebDriverWait wait ;
 
     public HomePage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
         PageFactory.initElements(driver,this);
+        waitForPageLoad();
     }
 
 
@@ -73,25 +72,15 @@ public class HomePage {
     @FindBy(xpath = "//ul[@id='homefeatured']/li[3]//div[@class='right-block']//a[@title='Add to cart']")
     private WebElement addToCartButton3 ;
 
-    public void waitForElement(WebElement element){
-
-        wait = new WebDriverWait(driver,15);
-        wait.until(ExpectedConditions.visibilityOf(element));
-    }
-
-
     public void waitForPageLoad(){
         waitForElement(catalogTabs);
     }
 
     public void addProductToCart(){
-
-
         Actions action = new Actions(driver);
             action.moveToElement(productContainer3).build().perform();
             waitForElement(addToCartButton3);
             addToCartButton3.click();
-
     }
 
 

@@ -1,6 +1,8 @@
 package com.shailin.practice.tests;
 
 import com.shailin.practice.pages.AddToCartPopUp;
+import com.shailin.practice.pages.AuthenticationPage;
+import com.shailin.practice.pages.CartSummaryPage;
 import com.shailin.practice.pages.HomePage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -35,12 +37,21 @@ public class MyFirstTest {
 
     @Test
     public void addToCartTest(){
-        driver.get(baseURL);
-        HomePage page = new HomePage(driver);
-        page.addProductToCart();
 
-        AddToCartPopUp popup = new AddToCartPopUp(driver);
-        popup.waitForPageLoad();
+        driver.get(baseURL);
+        HomePage homePage = new HomePage(driver);
+        homePage.addProductToCart();
+
+        AddToCartPopUp addToCartPopUp = new AddToCartPopUp(driver);
+        addToCartPopUp.navigateToCartSummary();
+
+        CartSummaryPage cartSummaryPage = new CartSummaryPage(driver);
+        cartSummaryPage.navigateToAuth();
+
+        AuthenticationPage authenticationPage = new AuthenticationPage(driver);
+        authenticationPage.navToRegistration("test_rob" +  System.currentTimeMillis() + "@mailinator.com");
+
+        // refactor using the concept of method chaining .. or return types of navigational and non navoigational methods ...
 
 
     }
