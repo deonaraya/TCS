@@ -34,12 +34,15 @@ public class CartSummaryPage extends BasePage{
 //        wait.until(ExpectedConditions.visibilityOf(element));
 //    }
 
-    public void waitForPageLoad(){
+    public CartSummaryPage waitForPageLoad(){
         waitForElement(cartSummary);
+        return this;
     }
 
 
-    public void navigateToAuth(){
+    public AuthenticationPage navigateToAuth(){
         checkoutStep2.click();
+
+        return new AuthenticationPage(driver);
     }
 }

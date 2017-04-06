@@ -72,32 +72,41 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//ul[@id='homefeatured']/li[3]//div[@class='right-block']//a[@title='Add to cart']")
     private WebElement addToCartButton3 ;
 
-    public void waitForPageLoad(){
+    public HomePage waitForPageLoad() {
         waitForElement(catalogTabs);
+
+        return this; // new HomePage(driver)
     }
 
-    public void addProductToCart(){
+    public AddToCartPopUp addProductToCart(){
         Actions action = new Actions(driver);
+
             action.moveToElement(productContainer3).build().perform();
             waitForElement(addToCartButton3);
             addToCartButton3.click();
+        return new AddToCartPopUp(driver);
+        // take me to add to cart summary pag e.. thus this is a naigational method ...
     }
 
 
 
-    public void getItemNames(){
-
+    public HomePage getItemNames(){
+        // non navigational
         System.out.println(productName1.getText());
         System.out.println(productName2.getText());
         System.out.println(productName3.getText());
 
+        return this;
+
     }
 
-    public void getItemPrices(){
-
+    public HomePage getItemPrices(){
+        // non navigational
         System.out.println(productPrice1.getText());
         System.out.println(productPrice2.getText());
         System.out.println(productPrice3.getText());
+
+        return this ;
 
     }
 

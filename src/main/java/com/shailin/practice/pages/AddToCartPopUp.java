@@ -28,12 +28,15 @@ public class AddToCartPopUp extends BasePage {
     @FindBy(id = "layer_cart_product_title")
     private static WebElement addedprocutName ;
 
-    public void waitForPageLoad(){
+    public AddToCartPopUp waitForPageLoad(){
         waitForElement(cartSuccessMessage);
+        return this;
     }
 
-    public void navigateToCartSummary(){
+    public CartSummaryPage navigateToCartSummary(){
         checkoutStep1Button.click();
+
+        return new CartSummaryPage(driver);
     }
 
 }

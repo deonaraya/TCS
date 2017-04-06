@@ -52,8 +52,9 @@ public class AuthenticationPage extends BasePage {
 //        wait.until(ExpectedConditions.visibilityOf(element));
 //    }
 
-    public void waitForPageLoad(){
+    public AuthenticationPage waitForPageLoad(){
         waitForElement(signInHeader);
+        return this;
     }
 
 
